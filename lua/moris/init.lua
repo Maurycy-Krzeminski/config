@@ -1,0 +1,5 @@
+require("moris.remap")
+require("moris.lazy")
+require("moris.set")
+require("moris.color")
+require("moris.yank")
