@@ -1,19 +1,24 @@
 return {
-  "nvim-treesitter/nvim-treesitter", 
+    "nvim-treesitter/nvim-treesitter",
+
+  dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  build = ":TSUpdate",
   config = function ()
-    -- Using protected call
-    local status_ok, treesitter = pcall(require, "nvim-treesitter")
-    if not status_ok then
-      return
-    end
-    local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-    if not status_ok then
-      return
-    end
+      -- Using protected call
+      local status_ok, _ = pcall(require, "nvim-treesitter")
+      if not status_ok then
+          return
+      end
+      local status_ok_c, configs = pcall(require, "nvim-treesitter.configs")
+      if not status_ok_c then
+          return
+      end
 
     configs.setup {
 	    -- A list of parser names, or "all"
-	    ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
+	    ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "go", "java", "kotlin", "svelte" },
 
 	    -- Install parsers synchronously (only applied to `ensure_installed`)
 	    sync_install = false,
