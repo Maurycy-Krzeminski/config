@@ -82,7 +82,7 @@ return{
             vim.keymap.set("n", "<leader>vn", function() vim.lsp.buf.rename() end, opts)
             vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         end)
-
+        lsp.skip_server_setup({'jdtls'})
         lsp.setup()
 
         vim.diagnostic.config({
