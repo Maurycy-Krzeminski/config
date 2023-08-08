@@ -5,8 +5,10 @@ local root_files = {
   '.git',
   'mvnw',
   'gradlew',
+  'gradlew.bat',
   'pom.xml',
   'build.gradle',
+  'build.gradle.kts',
 }
 
 local features = {
