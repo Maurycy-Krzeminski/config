@@ -1,4 +1,5 @@
 require("moris.remap")
+require("moris.shell")
 require("moris.lazy")
 require("moris.set")
 require("moris.color")
