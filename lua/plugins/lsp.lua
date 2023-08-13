@@ -36,6 +36,8 @@ return{
             'lua_ls',
             'kotlin_language_server',
             'jdtls',
+            'gopls',
+            'html',
         })
 
         -- Fix Undefined global 'vim'
