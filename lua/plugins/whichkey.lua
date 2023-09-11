@@ -10,6 +10,7 @@ return{
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         defaults = {
+            ["<leader>f"] = { name = "+Find With Telescope" },
             ["<leader>d"] = { name = "+debug" },
             ["<leader>da"] = { name = "+adapters" },
         },

@@ -4,16 +4,11 @@ return {
     config = function()
         local keymap = vim.keymap.set
         local builtin = require('telescope.builtin')
-        --local opts = { silent = true }
-        local opts = {}
-        keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-        keymap("n", "<leader>fg", ":Telescope git_files<CR>", opts)
-        keymap("n", "<C-p>", function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end, opts)
+        keymap("n", "<leader>ff", builtin.find_files, {desc = "Find files"})
+        keymap("n", "<leader>fg", builtin.git_files, {desc = "Find git files"})
+        keymap("n", "<leader>fh", builtin.help_tags, {desc = "Find help tag"})
+        keymap("n", "<leader>fk", builtin.keymaps, {desc = "Find keymaps"})
+        keymap("n", "<C-p>", builtin.live_grep, {desc = "Find live grep"})
 
-        keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
-        keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
-        keymap('n', '<leader>fh', builtin.help_tags, opts)
     end
 }
