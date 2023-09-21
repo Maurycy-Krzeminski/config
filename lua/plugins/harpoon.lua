@@ -6,8 +6,8 @@ return {
 		local mark = require("harpoon.mark")
 		local ui = require("harpoon.ui")
 
-		keymap("n", "<leader>a", mark.add_file)
-		keymap("n", "<C-q>", ui.toggle_quick_menu)
+		keymap("n", "<leader>a", mark.add_file, {desc = "add file to harpoon"})
+		keymap("n", "<C-q>", ui.toggle_quick_menu, {desc = "Harpoon quick menu"})
 
 		keymap("n", "<C-a>", function() ui.nav_file(1) end)
 		keymap("n", "<C-s>", function() ui.nav_file(2) end)
