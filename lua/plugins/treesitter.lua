@@ -18,7 +18,7 @@ return{{ "MunifTanjim/nui.nvim", lazy = true }, {
 
     configs.setup {
 	    -- A list of parser names, or "all"
-	    ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "go", "svelte" },
+	    ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "go", "svelte", "java" },
 
 	    -- Install parsers synchronously (only applied to `ensure_installed`)
 	    sync_install = false,
