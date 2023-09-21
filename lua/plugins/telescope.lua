@@ -1,6 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {'nvim-lua/plenary.nvim'},
     config = function()
         local keymap = vim.keymap.set
         local builtin = require('telescope.builtin')
