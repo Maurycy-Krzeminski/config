@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 local keymap = vim.keymap.set
-keymap("n", "<leader>vv", vim.cmd.Ex)
-keymap("n", "<leader>f", vim.lsp.buf.format)
+keymap("n", "<leader>vv", vim.cmd.Ex, { desc = "Exit to explorer" })
 
 -- better up/down
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
