@@ -20,5 +20,4 @@ config.default_prog = {'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershe
 
 config.window_decorations = 'RESIZE'
 -- and finally, return the configuration to wezterm
-print(config)
 return config
