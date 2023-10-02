@@ -2,6 +2,8 @@
 local os = require("os")
 local wezterm = require("wezterm")
 local act = wezterm.action
+local mux = wezterm.mux
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -10,6 +12,12 @@ local config = {}
 if wezterm.config_builder then
     config = wezterm.config_builder()
 end
+
+
+wezterm.on("gui-startup", function()
+  local tab, pane, window = mux.spawn_window{}
+  window:gui_window():maximize()
+end)
 
 -- This is where you actually apply your config choices
 
@@ -50,6 +58,5 @@ config.keys={
     { key = "UpArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
     { key = "DownArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 }
-
 -- and finally, return the configuration to wezterm
 return config
