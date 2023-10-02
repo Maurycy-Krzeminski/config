@@ -26,8 +26,17 @@ config.color_scheme = 'catppuccin-frappe'
 
 local powershell_profile = os.getenv("XDG_CONFIG_HOME") .. '\\powershellProfile\\PowerShell_profile.ps1'
 
-config.default_prog = {'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoExit', '-File' , powershell_profile}
+config.default_prog = {
+    'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoExit', '-File' , powershell_profile
+}
 config.window_decorations = 'RESIZE'
+
+config.launch_menu = {
+    {
+        label = "default",
+        args = {'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoExit', '-File' , powershell_profile}
+    }
+}
 
 config.keys={
     {
@@ -45,6 +54,7 @@ config.keys={
         mods = "ALT",
         action = act.ShowTabNavigator
     },
+    { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
     {
         key = "h",
         mods = "ALT",
