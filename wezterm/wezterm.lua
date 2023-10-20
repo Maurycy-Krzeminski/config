@@ -15,8 +15,8 @@ end
 
 
 wezterm.on("gui-startup", function()
-  local tab, pane, window = mux.spawn_window{}
-  window:gui_window():maximize()
+    local tab, pane, window = mux.spawn_window{}
+    window:gui_window():maximize()
 end)
 
 -- This is where you actually apply your config choices
@@ -54,7 +54,11 @@ config.keys={
         mods = "ALT",
         action = act.ShowTabNavigator
     },
-    { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
+    {
+        key = 'l',
+        mods = 'ALT',
+        action = wezterm.action.ShowLauncher
+    },
     {
         key = "h",
         mods = "ALT",
