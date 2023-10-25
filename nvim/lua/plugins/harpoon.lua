@@ -1,6 +1,7 @@
 return {
 	"theprimeagen/harpoon",
-
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  enabled = false,
 	config = function()
 		local keymap = vim.keymap.set
 		local mark = require("harpoon.mark")
