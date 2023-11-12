@@ -1,10 +1,10 @@
 return {
-	"theprimeagen/harpoon",
-
-	config = function()
-		local keymap = vim.keymap.set
-		local mark = require("harpoon.mark")
-		local ui = require("harpoon.ui")
+    "theprimeagen/harpoon",
+--    enabled = false,
+    config = function()
+        local keymap = vim.keymap.set
+        local mark = require("harpoon.mark")
+        local ui = require("harpoon.ui")
 
 		keymap("n", "<leader>a", mark.add_file, {desc = "add file to harpoon"})
 		keymap("n", "<C-q>", ui.toggle_quick_menu, {desc = "Harpoon quick menu"})
