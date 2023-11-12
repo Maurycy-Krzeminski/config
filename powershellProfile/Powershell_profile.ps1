@@ -23,3 +23,22 @@ function prompt {
 #    }
 #    $host.ui.Write($prompt)
 #}
+
+# Function testing if programm is installed
+# Example usage:
+# if(Test-Installation -ProgramName "bat")
+function Test-Installation {
+    param ([string]$ProgramName)
+    $null -ne (Get-Command $ProgramName -ErrorAction SilentlyContinue)
+}
+
+Write-Host "Profile start."
+if (Test-Installation -ProgramName "bat") {
+    Write-Host "Bat is installed."
+    Set-Alias -Name cat -Value bat  -Option AllScope
+    Write-Host "Bat is used instead of cat."
+} else {
+    Write-Host "Bat is not installed."
+    Set-Alias -Name cat -Value Get-Content  -Option AllScope
+    Write-Host "Get-Content is used."
+}
