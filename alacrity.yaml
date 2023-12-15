@@ -1,0 +1,44 @@
+window:
+  # Window decorations
+  #
+  # Available values:
+  # - Full: borders and title bar
+  # - None: neither borders nor title bar
+  decorations: None 
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Maximized
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
+    x: 10
+    y: 10
+shell:
+  program: C:\Users\Maurycy\AppData\Local\Microsoft\WindowsApps\pwsh.exe
+key_bindings:
+  # (Windows, Linux, and BSD only)
+  - { key: V,         mods: Control|Shift, action: Paste                       }
+  - { key: C,         mods: Control|Shift, action: Copy                        }
+  - { key: Insert,    mods: Shift,         action: PasteSelection              }
+  - { key: Key0,      mods: Control,       action: ResetFontSize               }
+  - { key: Equals,    mods: Control,       action: IncreaseFontSize            }
+  - { key: Plus,      mods: Control,       action: IncreaseFontSize            }
+  - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
+  - { key: F11,       mods: None,          action: ToggleFullscreen            }
+  - { key: Paste,     mods: None,          action: Paste                       }
+  - { key: Copy,      mods: None,          action: Copy                        }
+  - { key: L,         mods: Control,       action: ClearLogNotice              }
+  - { key: L,         mods: Control,       chars: "\x0c"                       }
+  - { key: PageUp,    mods: None,          action: ScrollPageUp,   mode: ~Alt  }
+  - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
+  - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
+  - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
+  - { key: N, mods: Control, action: SpawnNewInstance }
+
