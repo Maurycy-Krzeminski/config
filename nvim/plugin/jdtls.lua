@@ -17,7 +17,7 @@ local features = {
 
   -- change this to `true` if you have `nvim-dap`,
   -- `java-test` and `java-debug-adapter` installed
-  debugger = false,
+  debugger = true,
 }
 
 local function get_jdtls_paths()
