@@ -10,7 +10,7 @@ return{
                 pcall(vim.cmd, 'MasonUpdate')
             end,
         },
-        {'williamboman/mason-lspconfig.nvim' }, -- Optional
+        {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
         -- Autocompletion
         {'hrsh7th/nvim-cmp'}, -- Required
@@ -23,10 +23,9 @@ return{
         -- Snippets
         {'L3MON4D3/LuaSnip'}, -- Required
         {'rafamadriz/friendly-snippets'},
-        {'nvim-java/nvim-java'},
     },
 
-    config = function()
+      config = function()
         local lsp = require("lsp-zero")
 
         lsp.preset("recommended")
@@ -39,7 +38,6 @@ return{
             'jdtls',
             'gopls',
             'html',
-            'svelte',
         })
 
         -- Fix Undefined global 'vim'
@@ -96,8 +94,7 @@ return{
             opts.desc = "signature help"
             keymap("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         end)
---        lsp.skip_server_setup({'jdtls'})
-        require('lspconfig').jdtls.setup({})
+        lsp.skip_server_setup({'jdtls'})
         lsp.setup()
 
         vim.diagnostic.config({
