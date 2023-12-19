@@ -33,13 +33,9 @@ return{
 
         lsp.ensure_installed({
             'tsserver',
-            'rust_analyzer',
             'lua_ls',
-            'kotlin_language_server',
             'jdtls',
-            'gopls',
             'html',
-            'svelte',
         })
 
         -- Fix Undefined global 'vim'
