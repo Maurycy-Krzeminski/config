@@ -27,7 +27,7 @@ config.color_scheme = 'catppuccin-frappe'
 local powershell_profile = os.getenv("XDG_CONFIG_HOME") .. '\\powershellProfile\\PowerShell_profile.ps1'
 
 config.default_prog = {
-    'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoExit', '-File' , powershell_profile
+    'pwsh.exe', '-NoExit', '-File' , powershell_profile
 }
 config.window_decorations = 'RESIZE'
 
@@ -71,6 +71,28 @@ config.keys={
     { key = "LeftArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
     { key = "UpArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
     { key = "DownArrow", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+    -- Create a new tab in the same domain as the current pane.
+    -- This is usually what you want.
+    {
+        key = 't',
+        mods = 'SHIFT|ALT',
+        action = act.SpawnTab 'CurrentPaneDomain',
+    },
+    {
+        key = 'E',
+        mods = 'CTRL|SHIFT',
+        action = act.PromptInputLine {
+            description = 'Enter new name for tab',
+            action = wezterm.action_callback(function(window, pane, line)
+                -- line will be `nil` if they hit escape without entering anything
+                -- An empty string if they just hit enter
+                -- Or the actual line of text they wrote
+                if line then
+                    window:active_tab():set_title(line)
+                end
+            end),
+        },
+    },
 }
 -- and finally, return the configuration to wezterm
 return config
