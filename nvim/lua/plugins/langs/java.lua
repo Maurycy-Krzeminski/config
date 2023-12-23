@@ -1,3 +1,7 @@
+if not require("config").java then
+    return{}
+end
+
 return {
   -- Add java to treesitter.
   {
