@@ -1,43 +1,36 @@
-return{{ "MunifTanjim/nui.nvim", lazy = true }, {
-    "nvim-treesitter/nvim-treesitter",
-
-  dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-  },
-  build = ":TSUpdate",
-  config = function ()
-      -- Using protected call
-      local status_ok, _ = pcall(require, "nvim-treesitter")
-      if not status_ok then
-          return
-      end
-      local status_ok_c, configs = pcall(require, "nvim-treesitter.configs")
-      if not status_ok_c then
-          return
-      end
-
-    configs.setup {
-	    -- A list of parser names, or "all"
-	    ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "go", "svelte", "java" },
-
-	    -- Install parsers synchronously (only applied to `ensure_installed`)
-	    sync_install = false,
-
-	    -- Automatically install missing parsers when entering buffer
-	    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-	    auto_install = true,
-
-	    highlight = {
-		    -- `false` will disable the whole extension
-		    enable = true,
-
-            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-            -- Using this option may slow down your editor, and you may see some duplicate highlights.
-            -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = false,
+return{
+    {
+        "nvim-treesitter/nvim-treesitter",
+        version = false, -- last release is way too old and doesn't work on Windows
+        build = ":TSUpdate",
+        event = { "VeryLazy" },
+        ---@type TSConfig
+        ---@diagnostic disable-next-line: missing-fields
+        opts = {
+            highlight = { enable = true },
+            indent = { enable = true },
+            ensure_installed = {
+                "vimdoc" , "javascript", "typescript", "svelte" , "lua", "rust", "go"
+            },
         },
-    }
-end
-}
+        config = function(_, opts)
+            if type(opts.ensure_installed) == "table" then
+                local added = {}
+                opts.ensure_installed = vim.tbl_filter(function(lang)
+                    if added[lang] then
+                        return false
+                    end
+                    added[lang] = true
+                    return true
+                end, opts.ensure_installed)
+            end
+            require("nvim-treesitter.configs").setup(opts)
+        end,
+    },
+    -- Automatically add closing tags for HTML and JSX
+    {
+        "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
+        opts = {},
+    },
 }
