@@ -1,6 +1,6 @@
 return{
     ai = true,
     golang = true,
-    java = false,
+    java = true,
     web = true,
 }
