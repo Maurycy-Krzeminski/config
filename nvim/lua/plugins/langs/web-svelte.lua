@@ -1,4 +1,4 @@
-if not require("config").web then
+if not require("config").svelte then
     return{}
 end
 
@@ -8,7 +8,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
-            vim.list_extend(opts.ensure_installed, { "javascript", "jsdoc", "typescript" })
+            vim.list_extend(opts.ensure_installed, { "svelte" })
         end,
     },
     {

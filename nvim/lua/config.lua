@@ -3,4 +3,6 @@ return{
     golang = true,
     java = true,
     web = true,
+    svelte = true,
+    tsx = true,
 }
