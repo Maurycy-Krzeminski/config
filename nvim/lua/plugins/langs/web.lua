@@ -11,7 +11,10 @@ return {
             vim.list_extend(opts.ensure_installed, { "javascript", "jsdoc", "typescript" })
         end,
     },
+    -- Automatically add closing tags for HTML and JSX
     {
-
+        "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
+        opts = {},
     },
 }

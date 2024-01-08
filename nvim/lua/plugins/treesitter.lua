@@ -10,7 +10,7 @@ return{
             highlight = { enable = true },
             indent = { enable = true },
             ensure_installed = {
-                "vimdoc" , "javascript", "typescript", "svelte" , "lua", "rust", "go"
+                "vimdoc" , "lua", 
             },
         },
         config = function(_, opts)
@@ -26,11 +26,5 @@ return{
             end
             require("nvim-treesitter.configs").setup(opts)
         end,
-    },
-    -- Automatically add closing tags for HTML and JSX
-    {
-        "windwp/nvim-ts-autotag",
-        event = "VeryLazy",
-        opts = {},
     },
 }
