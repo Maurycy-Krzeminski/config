@@ -34,9 +34,10 @@ config.window_decorations = 'RESIZE'
 config.launch_menu = {
     {
         label = "default",
-        args = {'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoExit', '-File' , powershell_profile}
+        args = {'pwsh.exe', '-NoExit', '-File' , powershell_profile}
     }
 }
+
 
 config.keys={
     {
