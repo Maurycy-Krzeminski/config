@@ -2,10 +2,19 @@ $configPath = $pwd.path
 echo 'configPath:'$configPath  
 [SYSTEM.Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME',$configPath, [System.EnvironmentVariableTarget]::User)
 
-$statePath = Join-Path -Path $configPath -ChildPath "data"
-echo 'statePath data:'$statePath
+$tmpPath = Join-Path -Path $configPath -ChildPath "tmp"
+
+$dataPath = Join-Path -Path $tmpPath -ChildPath "data"
+echo 'dataPath:'$dataPath
+[SYSTEM.Environment]::SetEnvironmentVariable('XDG_DATA_HOME',$dataPath, [System.EnvironmentVariableTarget]::User)
+
+$statePath = Join-Path -Path $tmpPath -ChildPath "state"
+echo 'statePath:'$statePath
 [SYSTEM.Environment]::SetEnvironmentVariable('XDG_STATE_HOME',$statePath, [System.EnvironmentVariableTarget]::User)
-[SYSTEM.Environment]::SetEnvironmentVariable('XDG_DATA_HOME',$statePath, [System.EnvironmentVariableTarget]::User)
+
+$runtimePath = Join-Path -Path $tmpPath -ChildPath "runtime"
+echo 'runtimePath data:'$runtimePath
+[SYSTEM.Environment]::SetEnvironmentVariable('XDG_RUNTIME_HOME',$runtimePath, [System.EnvironmentVariableTarget]::User)
 
 $npmPath = Join-Path -Path $configPath -ChildPath "npm" | Join-Path -ChildPath ".npmrc"
 echo 'npmPath:'$npmPath
