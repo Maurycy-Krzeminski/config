@@ -21,6 +21,10 @@ echo 'npmPath:'$npmPath
 [SYSTEM.Environment]::SetEnvironmentVariable('NPM_CONFIG_USERCONFIG',$npmPath, [System.EnvironmentVariableTarget]::User)
 
 
+$komorebiPath = Join-Path -Path $configPath -ChildPath "komorebi"
+echo 'komorebiPath data:'$komorebiPath
+[SYSTEM.Environment]::SetEnvironmentVariable('KOMOREBI_CONFIG_HOME',$komorebiPath, [System.EnvironmentVariableTarget]::User)
+
 $scriptsPath = Join-Path -Path $configPath -ChildPath "scripts"
 
 # Get the current PATH environment variable
