@@ -13,6 +13,91 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
+local process_icons = {
+  ['docker'] = wezterm.nerdfonts.linux_docker,
+  ['docker-compose'] = wezterm.nerdfonts.linux_docker,
+  ['psql'] = '󱤢',
+  ['usql'] = '󱤢',
+  ['kuberlr'] = wezterm.nerdfonts.linux_docker,
+  ['kubectl'] = wezterm.nerdfonts.linux_docker,
+  ['stern'] = wezterm.nerdfonts.linux_docker,
+  ['nvim'] = wezterm.nerdfonts.custom_vim,
+  ['make'] = wezterm.nerdfonts.seti_makefile,
+  ['vim'] = wezterm.nerdfonts.dev_vim,
+  ['node'] = wezterm.nerdfonts.mdi_hexagon,
+  ['go'] = wezterm.nerdfonts.seti_go,
+  ['zsh'] = wezterm.nerdfonts.dev_terminal,
+  ['bash'] = wezterm.nerdfonts.cod_terminal_bash,
+  ['btm'] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ['htop'] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ['cargo'] = wezterm.nerdfonts.dev_rust,
+  ['sudo'] = wezterm.nerdfonts.fa_hashtag,
+  ['lazydocker'] = wezterm.nerdfonts.linux_docker,
+  ['git'] = wezterm.nerdfonts.dev_git,
+  ['lua'] = wezterm.nerdfonts.seti_lua,
+  ['wget'] = wezterm.nerdfonts.mdi_arrow_down_box,
+  ['curl'] = wezterm.nerdfonts.mdi_flattr,
+  ['gh'] = wezterm.nerdfonts.dev_github_badge,
+  ['ruby'] = wezterm.nerdfonts.cod_ruby,
+}
+
+local function get_current_working_dir(tab)
+  local current_dir = tab.active_pane.current_working_dir or ''
+  local HOME_DIR = string.format('file://%s', os.getenv('HOME'))
+  local dir_string_f = tostring(current_dir)
+  local dir_string = string.gsub(tostring(current_dir), '(.*[/\\])(.*)', '%2')
+  print('current_dir')
+  print( current_dir)
+  print('dir_string')
+  print(dir_string)
+  print('dir_string_f')
+  print(dir_string_f)
+  return current_dir == HOME_DIR and '.' or dir_string_f:gsub("^file:///", "")
+end
+
+local function get_process(tab)
+    if not tab.active_pane or tab.active_pane.foreground_process_name == '' then
+        return '[?]'
+    end
+
+    local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
+    if string.find(process_name, 'kubectl') then
+        process_name = 'kubectl'
+    end
+
+    return process_icons[process_name] or string.format('[%s]', process_name)
+end
+
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+    local has_unseen_output = false
+    if not tab.is_active then
+        for _, pane in ipairs(tab.panes) do
+            if pane.has_unseen_output then
+                has_unseen_output = true
+                break
+            end
+        end
+    end
+
+    local cwd = wezterm.format({
+        { Attribute = { Intensity = 'Bold' } },
+        { Text = get_current_working_dir(tab) },
+    })
+
+    local title = string.format(' %s ~ %s  ', get_process(tab), cwd)
+    local title = string.format(' %s   ', cwd)
+    print("title:" .. title)
+    if has_unseen_output then
+        return {
+            { Foreground = { Color = '#28719c' } },
+            { Text = title },
+        }
+    end
+
+    return {
+        { Text = title },
+    }
+end)
 
 wezterm.on("gui-startup", function()
     local tab, pane, window = mux.spawn_window{}
@@ -35,6 +120,14 @@ config.launch_menu = {
     {
         label = "default",
         args = {'pwsh.exe', '-NoExit', '-File' , powershell_profile}
+    },
+    {
+        label = "wsl",
+        args = {'wsl.exe' }
+    },
+    {
+        label = "nu",
+        args = {'nu.exe' }
     }
 }
 
